@@ -4,7 +4,7 @@ import { AppContext } from "./context";
 
 const AppProvider = ({ children }) => {
   const [users, setUsers] = useState(
-    JSON.parse(localStorage.getItem("users")) || usersData
+    JSON.parse(localStorage.getItem("users")) || []
   );
 
   const [randomNumbers, setRandomNumbers] = useState([]);

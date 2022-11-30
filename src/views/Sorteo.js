@@ -1,7 +1,5 @@
-import LogoSorteo from "../assets/sorteo_logo.jpg";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useContext, useRef, useState } from "react";
-import { GrRotateLeft } from "react-icons/gr";
 import { AppContext } from "../context/context";
 
 const Sorteo = () => {
@@ -116,7 +114,7 @@ const Sorteo = () => {
       let randomNumber2 = Math.floor(Math.random() * users.length);
       let randomNumber3 = Math.floor(Math.random() * users.length);
 
-      if (
+      /*if (
         randomNumber1 === randomNumber2 ||
         randomNumber1 === randomNumber3 ||
         randomNumber2 === randomNumber3
@@ -126,11 +124,26 @@ const Sorteo = () => {
         setUser1(users[randomNumber1]);
         setUser2(users[randomNumber2]);
         setUser3(users[randomNumber3]);
+      }*/
+      if (users.length > 0) {
+        setUser3(users[randomNumber3]);
       }
 
       if (stopRoll.current) {
         clearInterval(timer.current);
-        saveWinners(
+        if (users.length > 0) {
+          saveWinners(
+            users[randomNumber1],
+            users[randomNumber2],
+            users[randomNumber3]
+          );
+          removeWinners(
+            users[randomNumber1].id,
+            users[randomNumber2].id,
+            users[randomNumber3].id
+          );
+        }
+        /*saveWinners(
           users[randomNumber1],
           users[randomNumber2],
           users[randomNumber3]
@@ -140,7 +153,7 @@ const Sorteo = () => {
           users[randomNumber1].id,
           users[randomNumber2].id,
           users[randomNumber3].id
-        );
+        );*/
 
         if (
           randomNumbers.includes(randomNumber1) ||
@@ -212,9 +225,7 @@ const Sorteo = () => {
 
   return (
     <div className="sorteo_container">
-      <div className="sorteo_container_img">
-        <img src={LogoSorteo} alt="" />
-      </div>
+      <div className="sorteo_container_img">{/*<img src="" alt="" />*/}</div>
       <div className="questions-background">
         <div className="questions_container">
           <div className="questions_container_winners">
@@ -230,7 +241,7 @@ const Sorteo = () => {
                 <p>{user2?.name}</p>
               </div>
             ) : (
-              <div>
+              <div className="user_name">
                 <p>{user3?.name}</p>
               </div>
             )}
@@ -252,16 +263,16 @@ const Sorteo = () => {
             >
               Stop
             </button>
-            <Link to={!backButton && "/"}>
+            {/*<Link to={!backButton && "/ganadores"}>
               <button
                 disabled={backButton}
                 className={backButton ? "button-disabled" : ""}
               >
                 <GrRotateLeft size={25} />
               </button>
-            </Link>
+            </Link>*/}
           </div>
-          <div className="table_winners">
+          {/*<div className="table_winners">
             <div className="table_winners_container">
               <table>
                 <thead>
@@ -296,7 +307,7 @@ const Sorteo = () => {
                 </tbody>
               </table>
             </div>
-          </div>
+                    </div>*/}
         </div>
       </div>
     </div>

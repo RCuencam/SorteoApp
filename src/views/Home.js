@@ -1,13 +1,14 @@
 import Logo from "../assets/home-logo.jpg";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="home">
       <div className="home_logo">
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="" onClick={() => navigate("/sorteo")} />
       </div>
-      <div className="home_buttons">
+      {/*<div className="home_buttons">
         <Link to="/sorteo/1">
           <button>Sorteo 1</button>
         </Link>
@@ -20,7 +21,7 @@ const Home = () => {
         <Link to="/sorteo/extras">
           <button>Extras</button>
         </Link>
-      </div>
+        </div>*/}
     </div>
   );
 };

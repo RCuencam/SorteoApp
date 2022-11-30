@@ -11,6 +11,8 @@ const Reload = () => {
     reload("/");
     window.location.reload();
   }, []);
+
+  return null;
 };
 
 export default Reload;

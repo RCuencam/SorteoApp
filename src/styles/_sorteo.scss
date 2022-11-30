@@ -1,12 +1,17 @@
 
 body {
     background-color: #E9E9EB;
+    margin: 0;
 }
 .sorteo_container {
     width: 100%;
     background-color: #E9E9EB;
     height: 101.2vh;
-
+    background-image: url("../assets/background_sorteo.jpg");
+    background-size: cover;
+    background-position: top;
+    padding: 0;
+    margin: 0;
     &_img {
         width: 100%;
         img {
@@ -22,6 +27,7 @@ body {
     }
     
     .questions-background {
+        padding-top: 18vh;
         height: 81vh;
         display: flex;
         justify-content: center;
@@ -30,6 +36,16 @@ body {
         @media screen and (max-width: 963px) {
             flex-direction: column;
             align-items: center;
+        }
+
+        .user_name {
+            font-size: 1.5em;
+            margin-top: 140px;
+
+            p {
+                color: #12345A;
+                font-family: Arial, Helvetica, sans-serif;
+            }
         }
     }
     .table_winners {
@@ -80,6 +96,10 @@ body {
         bottom: -15px;
         position: relative;
 
+
+        @media screen and (max-width: 1550px) {
+            height: 450px;
+        }
         &_winners {
             padding-top: 100px;
             height: 300px;
@@ -95,6 +115,10 @@ body {
                 padding-top: 0;
                 height: 250px;
             }
+
+            @media screen and (max-width: 1550px) {
+                padding-top: 50px;
+            }
         }
         
         &_buttons {
@@ -102,6 +126,10 @@ body {
             justify-content: center;
             margin-top: 150px;
             width: 100%;
+
+            @media screen and (max-width: 1550px) {
+                margin-top: 70px;
+            }
 
             button {
 

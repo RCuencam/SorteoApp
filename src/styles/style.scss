@@ -1,2 +1,13 @@
 @import "./home";
 @import "./sorteo";
+@import "./participants";
+
+
+.goBack {
+  width: 180px;
+  height: 180px;
+  position: absolute;
+  left: 3%;
+  top: 5%;
+  cursor: pointer;
+}
