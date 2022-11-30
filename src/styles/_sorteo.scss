@@ -1,0 +1,175 @@
+
+body {
+    background-color: #E9E9EB;
+}
+.sorteo_container {
+    width: 100%;
+    background-color: #E9E9EB;
+    height: 101.2vh;
+
+    &_img {
+        width: 100%;
+        img {
+            width: 750px;
+            height: 15vh;
+            object-fit: contain;
+            margin-top: 50px;
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                height: 80%;
+            }
+        }
+    }
+    
+    .questions-background {
+        height: 81vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        @media screen and (max-width: 963px) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    .table_winners {
+        position: absolute;
+        right: 20px;
+        top: 100px;
+        &_container {
+            width: 300px;
+            margin-bottom: 100px;
+
+            & table {
+                width: 100%;
+                border-collapse:separate; 
+                border-spacing: 0;
+                thead {
+                    background: #626164;
+                    padding: 10px 0;
+                    color: white;
+                }
+
+                tbody {
+                    tr td {
+                        margin: 10px 0;
+                        border: 1px solid #626164;
+                    }
+                }
+            }
+
+        }
+        @media screen and (max-width: 1480px) {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            right: 0;
+        }
+    }
+    .questions_container {
+        background: url("../assets/panels.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-size:800px 100%;
+        background-position: center;
+        width: 100%;
+        max-width: 1700px;
+        height: 600px;
+        bottom: -15px;
+        position: relative;
+
+        &_winners {
+            padding-top: 100px;
+            height: 300px;
+            box-sizing: border-box;
+            p {
+                margin: 40px 0;
+                font-size: 1.6em;
+                font-weight: 600;
+                color: #626164;
+            }
+
+            @media screen and (max-width: 768px) {
+                padding-top: 0;
+                height: 250px;
+            }
+        }
+        
+        &_buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 150px;
+            width: 100%;
+
+            button {
+
+                cursor: pointer;
+                width: 140px;
+                height: 40px;
+                padding: 0;
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+                background: rgb(188,187,193);
+                background: linear-gradient(0deg, rgba(188,187,193,1) 0%, rgba(174,175,175,1) 0%, rgba(124,124,125,1) 100%);
+                border: 1px solid rgb(162, 162, 167);
+                border-radius: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                text-transform: uppercase;
+                font-size: .9em;
+                margin: 0 10px;
+                font-weight: 600;
+
+                @media screen and (max-width: 768px) {
+                    width: 110px;
+                }
+            }
+
+            .button-disabled {
+                filter: brightness(1.2);
+                cursor: not-allowed;
+            }
+            img {
+                width: 100%;
+                margin: 0 10px;
+                cursor: pointer;
+            }
+
+            @media screen and (max-width: 768px) {
+                margin-top: 100px;
+            }
+        }
+
+        @media screen and (max-width: 1480px) {
+            height: 500px;
+            background-size: 180%;
+            padding-top: 100px;
+            bottom: -25px;
+            background: none;
+        }
+        @media screen and (max-width: 1200px) {
+            background-size:600px 100%;
+        }
+        @media screen and (max-width: 963px) {
+            height: 500px;
+            background-size: 180%;
+            padding-top: 100px;
+            bottom: -25px;
+            background: none;
+        }
+        @media screen and (max-width: 425px) {
+            background-size: 250%;
+
+        }
+    }
+    @media screen and (max-width: 768px) {
+        height: 100%;
+
+    }
+
+}
