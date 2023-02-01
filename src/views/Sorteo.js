@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useRef, useState } from "react";
 import { AppContext } from "../context/context";
+import  Header  from "../assets/header.png";
 
 const Sorteo = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [bloques, setBloques] = useState(5);
   const [intentos, setIntentos] = useState(0);
@@ -225,7 +227,8 @@ const Sorteo = () => {
 
   return (
     <div className="sorteo_container">
-      <div className="sorteo_container_img">{/*<img src="" alt="" />*/}</div>
+      <div className="goBack" onClick={() => navigate("/")}></div>
+      <div className="sorteo_container_img">{<img src={Header} alt="" />}</div>
       <div className="questions-background">
         <div className="questions_container">
           <div className="questions_container_winners">

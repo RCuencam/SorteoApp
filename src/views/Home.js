@@ -1,4 +1,4 @@
-import Logo from "../assets/home-logo.jpg";
+import Logo from "../assets/background_sorteo2.jpg";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Home = () => {

@@ -4,6 +4,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { AppContext } from "../context/context";
 import { Excel } from "antd-table-saveas-excel";
 import { useNavigate } from "react-router-dom";
+import Logo from "../assets/logo.png";
 
 export const Ganadores = () => {
   const { tablas, setUsers, users, setTablas } = useContext(AppContext);
@@ -139,7 +140,9 @@ export const Ganadores = () => {
 
   return (
     <div className="participants">
-      <div className="goBack" onClick={() => navigate("/sorteo")}></div>
+      <div className="goBack" onClick={() => navigate("/sorteo")}>
+        <img src={Logo} alt="" />
+      </div>
       <h1>Ganadores</h1>
       <div className="participants_body">
         <div className="export_button">

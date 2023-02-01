@@ -4,6 +4,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Excel } from "antd-table-saveas-excel";
 import { AppContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
+import Logo from "../assets/logo.png";
 
 export const Participantes = () => {
   const { users, setUsers, tablas } = useContext(AppContext);
@@ -170,7 +171,9 @@ export const Participantes = () => {
 
   return (
     <div className="participants">
-      <div className="goBack" onClick={() => navigate("/sorteo")}></div>
+      <div className="goBack" onClick={() => navigate("/sorteo")}>
+        <img src={Logo} alt="" />
+      </div>
       <h1>Participantes</h1>
       <div className="participants_form">
         <input
