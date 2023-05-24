@@ -1,7 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../context/context";
 import  Header  from "../assets/header.png";
+import SorteoButton from "../assets/sorteo_button.png";
+import StopButton from "../assets/stop_button.png";
+import LogoLeft from "../assets/logo_left.png";
+import Logo from "../assets/logo.png";
+import WinnersBackground from "../assets/winners_background.png";
 
 const Sorteo = () => {
   const { id } = useParams();
@@ -30,6 +35,9 @@ const Sorteo = () => {
     buttons,
     setButtons,
   } = useContext(AppContext);
+
+  const [winners, setWinners] = useState([]);
+  
 
   const [user1, setUser1] = useState({
     id: "example1",
@@ -89,6 +97,7 @@ const Sorteo = () => {
           item.id === 4 ? { ...item, winners: [...item.winners, user3] } : item
         )
       );
+      setWinners(value => [...value, user3])
     }
   };
 
@@ -228,8 +237,23 @@ const Sorteo = () => {
   return (
     <div className="sorteo_container">
       <div className="goBack" onClick={() => navigate("/")}></div>
-      <div className="sorteo_container_img">{<img src={Header} alt="" />}</div>
+      {/*<div className="sorteo_container_img">{<img src={Header} alt="" />}</div>*/}
       <div className="questions-background">
+        <img src={LogoLeft} className="logo_left"/>
+        <img src={Logo} className="logo_right"/>
+        <img src={WinnersBackground} className="winners_background"/>
+        <div className="current_winners">
+          <div className="list">  
+            {
+              winners.map(item => (
+                <p key={item.id} style={{color: '#fff', fontFamily: 'Arial'}}>- {item.name}</p>
+              ))
+            }
+          </div>
+          <button onClick={() => {
+            setWinners([])
+          }}>Borrar</button>
+        </div>
         <div className="questions_container">
           <div className="questions_container_winners">
             {numWinners === 3 ? (
@@ -250,7 +274,7 @@ const Sorteo = () => {
             )}
           </div>
           <div className="questions_container_buttons">
-            <button
+            {/*<button
               onClick={raffle}
               disabled={sorteoButton || intentosValidator()}
               className={
@@ -258,14 +282,16 @@ const Sorteo = () => {
               }
             >
               Sorteo {id && getIntentos() + " " + "-" + " " + "5"}
-            </button>
-            <button
+            </button>*/}
+            <img src={SorteoButton} onClick={(!sorteoButton && !intentosValidator()) ? raffle : null} width={200}/>
+            <img src={StopButton} onClick={!stopButton ? stop : null} width={200}/>
+            {/*<button
               onClick={stop}
               disabled={stopButton}
               className={stopButton ? "button-disabled" : ""}
             >
               Stop
-            </button>
+            </button>*/}
             {/*<Link to={!backButton && "/ganadores"}>
               <button
                 disabled={backButton}

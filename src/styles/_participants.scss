@@ -6,7 +6,7 @@
   background-image: url("../assets/background_sorteo2.jpg");
   background-size: cover;
   background-position: top;
-  height: 100vh;
+  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
 
   display: flex;
@@ -70,4 +70,62 @@
       cursor: pointer;
     }
   }
+}
+
+.inputfile-box {
+  position: relative;
+  margin-right: 10px;
+  margin-top: 3px;
+  .inputfile {
+    display: none !important;
+  }
+  
+  .container {
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .file-box {
+    display: flex;
+    justify-content: flex-start;
+    width: 300px;
+    border: 1px solid;
+    padding: 5px 0px 5px 5px;
+    box-sizing: border-box;
+    height: calc(2rem - 2px);
+    color: #fff;
+  }
+  
+  .file-button {
+    background: orange;
+    padding: 5px;
+    position: absolute;
+    border: 1px solid;
+    top: 0px;
+    right: 0px;
+    color: #fff;
+  }
+}
+
+.format-button {
+  display: flex;
+  justify-content: flex-end;
+  background: green;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 0 0 10px 0;
+  cursor: pointer;
+}
+.delete-button {
+  display: flex;
+  justify-content: flex-end;
+  background: red;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 0 10px 10px 0;
+  cursor: pointer;
 }

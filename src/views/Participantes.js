@@ -5,6 +5,9 @@ import { Excel } from "antd-table-saveas-excel";
 import { AppContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
+import * as XLSX from 'xlsx';
+import FormatoPDF from '../assets/Formato.xlsx';
+import uniqid from 'uniqid';
 
 export const Participantes = () => {
   const { users, setUsers, tablas } = useContext(AppContext);
@@ -14,6 +17,51 @@ export const Participantes = () => {
     id: users.length,
     name: "",
   });
+
+  const [excelData, setExcelData] = useState(null);
+  const [dataSource, setDataSource] = useState(users);
+  const [excelName, setExcelName] = useState(null);
+
+
+  const fileType = ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+  const handleFile = (e) => {
+    e.preventDefault();
+    let selectedFile = e.target.files[0];
+    if(selectedFile) {
+      setExcelName(selectedFile.name)
+      let reader = new FileReader();
+      reader.readAsArrayBuffer(selectedFile);
+      reader.onload = (e) => {
+        e.preventDefault();
+        let data = e.target.result
+        setExcelData(data);
+      }
+    } else {
+      setExcelData(null)
+    }
+  }
+
+  const handleUploadExcel = (e) => {
+    e.preventDefault();
+    if(excelData !== null) {
+      const workbook = XLSX.read(excelData, { type: 'buffer' });
+      const workSheetName = workbook.SheetNames[0];
+      const workSheet = workbook.Sheets[workSheetName];
+      const data = XLSX.utils.sheet_to_json(workSheet);
+      setExcelData(data)
+      let arr = data.map((item, index) => ({
+        id: uniqid(),
+        name: item.Participantes
+      }))
+      setDataSource([...users, ...arr]);
+      setUsers([...users, ...arr])
+      setExcelName("");
+      setExcelData(null)
+    } else {
+      setExcelData(null)
+    }
+  }
+
   const searchInput = useRef(null);
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -109,7 +157,6 @@ export const Participantes = () => {
     render: (text) => text,
   });
 
-  const [dataSource, setDataSource] = useState(users);
 
   const columns = [
     {
@@ -169,10 +216,15 @@ export const Participantes = () => {
     setDataSource(users.filter((item) => item.id !== id));
   };
 
+  const deleteAll = () => {
+    setDataSource([]);
+    setUsers([]);
+  }
+
   return (
     <div className="participants">
       <div className="goBack" onClick={() => navigate("/sorteo")}>
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="" width={200}/>
       </div>
       <h1>Participantes</h1>
       <div className="participants_form">
@@ -185,11 +237,26 @@ export const Participantes = () => {
         <button onClick={addParticipant}>Añadir</button>
       </div>
       <div className="participants_body">
+        <div style={{width: '100%', display: 'flex', justifyContent: 'flex-end'}}>
+        <button className="delete-button" onClick={deleteAll}>Borrar Todo</button>
+        <a href={FormatoPDF} target="_blank" download="Formato Participantes.xlsx"><button className="format-button">Descargar Formato</button></a>
+        </div>
         <div className="export_button">
+        <div className="inputfile-box">
+          <input type="file" id="file" className="inputfile" onChange={handleFile} />
+          <label htmlFor="file">
+            <span id="file-name" className="file-box">{excelName}</span>
+            <span className="file-button">
+              <i className="fa fa-upload" aria-hidden="true"></i>
+              Seleccionar
+            </span>
+          </label>
+        </div>
+          <button onClick={handleUploadExcel} style={{marginRight: '10px', backgroundColor: 'orange'}}>Subir Archivo</button>
           <button onClick={handleExcel}>Descargar</button>
         </div>
         <div className="participants_table">
-          <Table dataSource={dataSource} columns={columns} id />;
+          <Table dataSource={dataSource} columns={columns}/>;
         </div>
       </div>
     </div>

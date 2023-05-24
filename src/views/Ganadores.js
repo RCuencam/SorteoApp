@@ -141,7 +141,7 @@ export const Ganadores = () => {
   return (
     <div className="participants">
       <div className="goBack" onClick={() => navigate("/sorteo")}>
-        <img src={Logo} alt="" />
+        <img src={Logo} alt=""  width={200}/>
       </div>
       <h1>Ganadores</h1>
       <div className="participants_body">

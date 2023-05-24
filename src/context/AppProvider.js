@@ -3,10 +3,13 @@ import { usersData } from "../data/users";
 import { AppContext } from "./context";
 
 const AppProvider = ({ children }) => {
+  /*const [users, setUsers] = useState(
+    JSON.parse(localStorage.getItem("users")) || usersData
+  );*/
+
   const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("users")) || []
   );
-
   const [randomNumbers, setRandomNumbers] = useState([]);
   const [tablas, setTablas] = useState(
     JSON.parse(localStorage.getItem("tablas")) || [
